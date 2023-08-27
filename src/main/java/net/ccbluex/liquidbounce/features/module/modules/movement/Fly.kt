@@ -96,6 +96,8 @@ object Fly : Module("Fly", ModuleCategory.MOVEMENT, Keyboard.KEY_F) {
     val mineplexSpeed by FloatValue("MineplexSpeed", 1f, 0.5f..10f) { mode == "Mineplex" }
     val neruxVaceTicks by IntegerValue("NeruxVace-Ticks", 6, 2..20) { mode == "NeruxVace" }
     val redeskyHeight by FloatValue("Redesky-Height", 4f, 1f..7f) { mode == "Redesky" }
+    val spoofGround by BoolValue("Spoof-Ground", true) { mode == "Jump"}
+    val fakeBlock by BoolValue("FakeBlock", false) { mode == "Jump"}
 
     // Visuals
     private val mark by BoolValue("Mark", true)

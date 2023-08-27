@@ -24,7 +24,7 @@ import net.minecraft.network.play.client.C03PacketPlayer.C04PacketPlayerPosition
 
 object Criticals : Module("Criticals", ModuleCategory.COMBAT) {
 
-    val mode by ListValue("Mode", arrayOf("Packet", "NcpPacket", "NoGround", "Hop", "TPHop", "Jump", "LowJump", "Visual"), "Packet")
+    val mode by ListValue("Mode", arrayOf("Packet", "NcpPacket", "NoGround", "Hop", "TPHop", "Jump", "LowJump", "OldVerus", "Visual"), "Packet")
     val delay by IntegerValue("Delay", 0, 0..500)
     private val hurtTime by IntegerValue("HurtTime", 10, 0..10)
 
@@ -77,6 +77,12 @@ object Criticals : Module("Criticals", ModuleCategory.COMBAT) {
                         C04PacketPlayerPosition(x, y + 0.01, z, false)
                     )
                     thePlayer.setPosition(x, y + 0.01, z)
+                }
+                "verus" -> {
+                    sendPackets(
+                            C04PacketPlayerPosition(x, y + 0.001, z, true),
+                    )
+                    mc.thePlayer.onCriticalHit(entity)
                 }
                 "jump" -> thePlayer.motionY = 0.42
                 "lowjump" -> thePlayer.motionY = 0.3425
